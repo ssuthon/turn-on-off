@@ -1,0 +1,21 @@
+<html ng-app="myApp">
+<head>
+	<title></title>
+	<script src="lib/angular/angular.js"></script>
+	<script src="lib/socket.io-client/socket.io.js"></script>
+</head>
+<body ng-controller="myCtrl">
+	<button ng-click="turn(1)">ON</button>
+	<button ng-click="turn(0)">OFF</button>
+</body>
+<script type="text/javascript">
+	var socket = io.connect();
+	var app = angular.module('myApp', [])
+	app.controller('myCtrl', function($scope){
+		$scope.turn = function(value){
+			console.log(value);
+			socket.emit('turn', {value: value})
+		}
+	})
+</script>
+</html>
